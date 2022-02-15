@@ -90,6 +90,15 @@ export const getStaticProps = async ({ params }) => {
         'fields.slug': params.slug
     })
 
+    if (!res.items.length) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+
     return {
         props: {
             recipe: res.items[0]
